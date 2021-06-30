@@ -11,7 +11,8 @@ export class MenuComponent implements OnInit {
 
   nome = environment.nome
 
-  foto = environment.foto
+  //foto = environment.foto
+
 
   constructor(
     private router: Router
@@ -19,6 +20,26 @@ export class MenuComponent implements OnInit {
 
 
   ngOnInit(){
+
+  }
+
+  verificaFoto(){
+
+    const verificador = /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/g;
+
+    let foto
+    
+    if(environment.foto.match(verificador)){
+
+      foto = environment.foto
+      
+    }
+    else{
+
+      foto = "../assets/unnamed.png"
+    }
+
+    return foto;
 
   }
 
