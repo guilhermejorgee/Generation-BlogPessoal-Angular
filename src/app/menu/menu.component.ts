@@ -11,7 +11,7 @@ export class MenuComponent implements OnInit {
 
   nome = environment.nome
 
-  //foto = environment.foto
+  foto = environment.foto
 
 
   constructor(
@@ -23,20 +23,20 @@ export class MenuComponent implements OnInit {
 
   }
 
-  verificaFoto(){
+ verificaFoto(){
+
+    let foto;
 
     const verificador = /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/g;
-
-    let foto
     
-    if(environment.foto.match(verificador)){
+    if(verificador.test(environment.foto)){
 
       foto = environment.foto
       
     }
     else{
 
-      foto = "../assets/unnamed.png"
+      foto = "/../assets/unnamed.png"
     }
 
     return foto;

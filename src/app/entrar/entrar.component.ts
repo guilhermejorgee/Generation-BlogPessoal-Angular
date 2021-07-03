@@ -18,7 +18,7 @@ export class EntrarComponent implements OnInit {
     private router: Router
   ) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
     window.scroll(0,0)
   }
 
@@ -26,10 +26,11 @@ export class EntrarComponent implements OnInit {
     this.auth.entrar(this.userLogin).subscribe((resp: UserLogin)=>{
       this.userLogin = resp;
 
+      environment.id = this.userLogin.id
       environment.token = this.userLogin.token
       environment.nome = this.userLogin.nome
       environment.foto = this.userLogin.foto
-      environment.id = this.userLogin.id
+      
 
       this.router.navigate(['/inicio'])
 
