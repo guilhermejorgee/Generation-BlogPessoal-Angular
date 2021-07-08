@@ -56,8 +56,8 @@
                     <th>{{item.id}}</th>
                     <td>{{item.descricao}}</td>
                     <td class="d-flex justify-content-end">
-                      <button class="btn btn-info mr-3" [routerLink]="['/tema-edit', item.id]">Editar</button>
-                      <button class="btn btn-danger" [routerLink]="['/tema-delete', item.id]">Apagar</button>
+                      <button data-toggle="modal" data-target="#editarModal" class="btn btn-info mr-3" [routerLink]="['/tema-edit', item.id]">Editar</button>
+                      <button data-toggle="modal" data-target="#excluirModal" class="btn btn-danger" [routerLink]="['/tema-delete', item.id]">Apagar</button>
                     </td>
                   </tr>
                 </tbody>
@@ -67,4 +67,71 @@
 
     </div>
 
-</div>
+  <!-- Modal Editar -->
+  <div class="modal fade" id="editarModal" tabindex="-1" aria-labelledby="editarModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editarModalLabel">Modal title</h5>
+          <button data-dismiss="modal" type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+        <app-tema-edit></app-tema-edit>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <!-- Modal Excluir -->
+    <div class="modal fade" id="excluirModal" tabindex="-1" aria-labelledby="excluirModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header bg-info border-dark">
+              <h5 class="modal-title" id="excluirModalLabel">Apagar Tema</h5>
+              <button data-dismiss="modal" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body bg-dark">
+                <div class="container my-5">
+
+                    <div class="row mb-3">
+                        <div class="col-md-12">
+                
+                            <h1 class="text-center text-warning">{{tema.descricao}}</h1>
+                
+                        </div>
+                    </div>
+                
+                    <div class="row mb-3">
+                        <div class="col-md-12">
+                
+                            <h4 class="text-center text-light">
+                                Você tem certeza que deseja apagar este tema? Todas as postagens relacionadas a ele, também serão apagadas
+                            </h4>
+                
+                        </div>
+                    </div>
+                
+                  <!-- <div class="row mb-4">
+                        <div class="col-md-12">
+                            <h5 class="text-center text-primary">{{tema.descricao}}</h5>
+                        </div>
+                    </div>--> 
+                
+                    <div class="row">
+                        <div class="col-md-12 d-flex justify-content-center">
+                
+                            <button data-dismiss="modal" class="btn btn-danger mr-4" routerLink="/tema">Não</button>
+                            <button data-dismiss="modal"  class="btn btn-success" (click)="deleteTema()">Sim</button>
+                
+                        </div>
+                    </div>
+                
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
