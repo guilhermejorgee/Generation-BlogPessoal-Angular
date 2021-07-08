@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from 'src/environments/environment.prod';
 import { Tema } from '../model/Tema';
 import { TemaService } from '../service/tema.service';
@@ -17,7 +17,8 @@ export class TemaComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private temaService: TemaService
+    private temaService: TemaService,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit(){
@@ -29,6 +30,18 @@ export class TemaComponent implements OnInit {
     if(environment.token == ''){
       this.router.navigate(['/entrar'])
     }
+
+    let id = this.route.snapshot.params['id']
+
+    this.findTemaById(id)
+
+  }
+
+  findTemaById(id: number){
+
+    this.temaService.getById(id).subscribe((resp: Tema)=>{
+      this.tema = resp
+    })
 
   }
 
@@ -51,5 +64,16 @@ export class TemaComponent implements OnInit {
 
     })
 }
+
+deleteTema(){
+
+  this.temaService.deleteTema(this.tema.id).subscribe(()=>{
+    alert('Tema deletado com sucesso')
+    this.router.navigate(['/tema'])
+  })
+
+}
+
+
 
 }
