@@ -30,6 +30,11 @@ export class AuthService {
 
   }
 
+  atualizar(user: User): Observable<User>{
+    return this.http.put<User>('https://blogpessoalguijorge.herokuapp.com/usuarios', user)
+
+  }
+
   logado(){
 
     let ok = false;
