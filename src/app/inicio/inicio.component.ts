@@ -32,6 +32,9 @@ export class InicioComponent implements OnInit {
 
   listaDePostagens: Postagem[];
 
+  key = 'date'
+  reverse = true
+
   
 
 

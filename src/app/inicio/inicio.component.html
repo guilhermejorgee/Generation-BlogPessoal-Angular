@@ -62,7 +62,7 @@
 
             <div class="card-columns">
 
-                <div class="card text-center" *ngFor='let item of listaDePostagens'>
+                <div class="card text-center" *ngFor='let item of listaDePostagens | orderBy: key : reverse'>
                     <div class="card-body">
                         <h5 class="card-title m-0">{{item.titulo}}</h5>
                         <small class="text-muted">Tema: {{item.tema.descricao}}</small>
@@ -90,7 +90,7 @@
 
             <div class="card-columns">
 
-                <div class="card text-center" *ngFor='let item of userPostagens.postagem'>
+                <div class="card text-center" *ngFor='let item of userPostagens.postagem | orderBy: key : reverse'>
                     <div class="card-body">
                         <h5 class="card-title m-0">{{item.titulo}}</h5>
                         <small class="text-muted">Tema: {{item.tema.descricao}}</small>
@@ -113,7 +113,7 @@
 
         <div class="tab-pane fade" id="nav-postagensTema" role="tabpanel" aria-labelledby="nav-postagensTema-tab">
 
-            <div class="card-columns" *ngFor='let tema of listaTemas'>
+            <div class="card-columns" *ngFor='let tema of listaTemas | orderBy: key : reverse'>
 
                 <div class="card text-center" *ngFor='let item of tema.postagem'>
                     <div class="card-body">
