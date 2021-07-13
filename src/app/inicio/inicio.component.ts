@@ -57,7 +57,7 @@ export class InicioComponent implements OnInit {
     this.postagemService.refreshToken()
 
     if(environment.token == ''){
-      alert('Sua sessão expirou, logue novamente')
+      this.alertas.showAlertInfo('Sua sessão expirou, logue novamente')
       this.router.navigate(['/entrar'])
     }
 
