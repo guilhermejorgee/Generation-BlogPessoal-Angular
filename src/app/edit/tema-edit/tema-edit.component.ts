@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Tema } from 'src/app/model/Tema';
+import { AlertasService } from 'src/app/service/alertas.service';
 import { TemaService } from 'src/app/service/tema.service';
 import { environment } from 'src/environments/environment.prod';
 
@@ -16,7 +17,8 @@ export class TemaEditComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private temaService: TemaService
+    private temaService: TemaService,
+    private alertas: AlertasService
   ) { }
 
   ngOnInit(){
@@ -26,7 +28,7 @@ export class TemaEditComponent implements OnInit {
     }
 
     if(environment.tipo != 'adm'){
-      alert('Função liberada apenas para administradores')
+      this.alertas.showAlertInfo('Função liberada apenas para administradores')
       this.router.navigate(['/inicio'])
     }
 
@@ -48,7 +50,7 @@ export class TemaEditComponent implements OnInit {
     this.temaService.putTema(this.tema).subscribe((resp: Tema)=>{
       this.tema = resp;
 
-      alert('Tema atualizado com sucesso')
+      this.alertas.showAlertSuccess('Tema atualizado com sucesso')
       this.router.navigate(['/tema'])
     })
 
