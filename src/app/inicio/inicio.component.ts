@@ -35,6 +35,9 @@ export class InicioComponent implements OnInit {
   key = 'date'
   reverse = true
 
+  tituloPost: string;
+  nomeTema: string;
+
   
 
 
@@ -100,6 +103,22 @@ export class InicioComponent implements OnInit {
 
   }
 
+  findByTituloPostagem(){
+
+    if(this.tituloPost == ''){
+      this.findAllPostagens()
+    }
+    else{
+      this.postagemService.getByTituloPostagem(this.tituloPost).subscribe((resp: Postagem[])=>{
+
+        this.listaDePostagens = resp
+        
+      })
+    }
+
+
+  }
+
   findAllPostagens(){
     this.postagemService.getAllPostagens().subscribe((resp: Postagem[])=>{
       this.listaDePostagens = resp;
@@ -110,6 +129,17 @@ export class InicioComponent implements OnInit {
     this.auth.getById(this.userId).subscribe((resp: User)=>{
       this.userPostagens = resp;
     })
+  }
+
+  findByNomeTema(){
+    if(this.nomeTema == ''){
+      this.findAllTemas()
+    }
+    else{
+      this.temaService.getByNomeTema(this.nomeTema).subscribe((resp: Tema[])=>{
+        this.listaTemas = resp;
+      })
+    }
   }
 
 
