@@ -25,6 +25,11 @@ export class TemaEditComponent implements OnInit {
       this.router.navigate(['/entrar'])
     }
 
+    if(environment.tipo != 'adm'){
+      alert('Função liberada apenas para administradores')
+      this.router.navigate(['/inicio'])
+    }
+
     let id = this.route.snapshot.params['id']
     this.findByIdTema(id)
 

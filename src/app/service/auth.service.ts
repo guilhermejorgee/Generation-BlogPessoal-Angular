@@ -52,5 +52,18 @@ export class AuthService {
    return this.http.get<User>(`https://blogpessoalguijorge.herokuapp.com/usuarios/${id}`, this.token)
   }
 
+  adm(){
+
+    let ok = false;
+
+    if(environment.tipo == 'adm'){
+      ok = true;
+    }
+
+    return ok;
+
+
+  }
+
 
 }
